@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="icon" href="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+        <header>
+            <a href="#" class="logo">FocusDeck</a>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item" id="nav-task">
+                        <i class="nav__icon fa-solid fa-check"></i>
+                        <p class="nav__description">Tasks</p>
+                    </li>
+                    <li class="nav__item" id="nav-sound">
+                        <div class="nav__sound-mute"><i class="nav__icon fa-solid fa-volume-xmark"></i></div>
+                        <div class="nav__sound-play"><i class="nav__icon fa-solid fa-volume-high"></i></div>
+                        <p class="nav__description">Sound</p>
+                    </li>
+                    <li class="nav__item">
+                        <i class="nav__icon fa-solid fa-arrow-up-right-from-square"></i>
+                        <p class="nav__description">Links</p>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <!-- Todo List -->
+            <div class="task">
+                <form>
+                    <label for="task-input" class="task__input-label">Add a new task</label>
+                    <input id="task-input" class="task__input" type="text" placeholder="Read 30 minutes">
+                    <button id="task-add-btn" class="task__btns task__add-btn">Add</button>
+                </form>
+                <p id="task-error" class="task__error"></p>
+                <div id="task-list" class="task__list"></div>
+            </div>
+            <!-- Sound -->
+            <div>
+                <audio src="sounds/nature.mp3" id="nature-sound" loop></audio>
+            </div>
+            <div class="display">
+                <!-- Pomodoro Timer -->
+                <div class="timer">
+                    <div class="timer__mode-btns">
+                        <button class="timer__mode-btn" id="pomodoro-btn">Pomodoro</button>
+                        <button class="timer__mode-btn" id="short-break-btn">Short Break</button>
+                        <button class="timer__mode-btn" id="long-break-btn">Long Break</button>
+                    </div>
+                    <p class="timer__display" id="timer-display">25:00</p>
+                    <div class="timer__control-btns" id="timer-controls">
+                        <button class="timer__control-btn" id="timer-start-btn"><i class="fa-solid fa-play"></i></button>
+                        <button class="timer__control-btn" id="timer-pause-btn"><i class="fa-solid fa-pause"></i></button>
+                        <button class="timer__control-btn" id="timer-reset-btn"><i class="fa-solid fa-rotate-right"></i></button>
+                        <!-- <i class="fa-solid fa-gear"></i> -->
+                    </div>
+                </div>
+                <!-- Quote Display -->
+                <div class="quote">
+                    <p class="quote__text">"Don't only do the things you enjoy. Also enjoy the things you're doing."</p>
+                    <p class="quote__author">Ali Abdaal</p> 
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <p>&copy; <span id="year"></span> Fronk.<span class="space"> </span>All Rights Reserved</p>
+            </div>
+        </footer>
+
+        <script src="index.js" async></script>
+        <script src="task.js" async></script>
+        <script src="sound.js" async></script>
+        <script src="timer.js" async></script>
+    </body>
+</html>
