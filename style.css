@@ -12,18 +12,19 @@
     --timer-display-font-size: 4rem;
 }
 
-body {
+html, body {
+    height: 100%;
+    font-family: 'Mulish', sans-serif;
+    background-color: beige;
+}
+
+.container {
     height: calc(100vh + 1.375rem + var(--margin-left-right));
     position: relative;
     display: flex;
     flex-direction: column;
     padding: var(--margin-left-right) var(--margin-left-right) 0.75rem;
-    background-color: beige;
-    font-family: 'Mulish', sans-serif;
     overflow-x: hidden;
-}
-
-body *{
 }
 
 button {
@@ -94,7 +95,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .display {
@@ -103,7 +104,6 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
 }
 
 /* Task */
@@ -280,7 +280,7 @@ hr {
 
 .quote {
     max-width: 1000px;
-    padding-bottom: 1.5em;
+    margin: 2em 0;
     font-size: var(--font-size);
     text-align: center;
     cursor: pointer;
@@ -302,6 +302,7 @@ hr {
 footer {
     flex-shrink: 0;
     height: 1.375rem;
+    margin-top: 1.5em;
     text-align: center;
 }
 
@@ -321,24 +322,34 @@ footer {
         --font-size: 1.25rem;
         --timer-display-font-size: 5rem;
     }
+    .display {
+        height: 100%;
+    }
     .timer__mode-btn {
         width: 200px;
     }
 }
 
 @media (max-width: 768px) {
+    .container {
+        height: calc(100vh - 2*var(--margin-left-right));
+    }
     .logo {
         font-size: 2rem;
+    }
+    .display {
+        height: 60%;
+    }
+    .task {
+        height: calc(100vh - max(25vw, 280px) - 3*var(--margin-left-right));
+    }
+    .timer {
+        margin-top: 1rem;
     }
 }
 
 @media (max-width: 420px) {
     .logo {
-        font-size: 1.5x rem;
+        font-size: 1.5rem;
     }
 }
-
-/* Sound used in this app:
-"Storm, Rain, Birds, Leaves" – Copyright (c) Mateus Felipe Gonçalves
-Licensed under the MIT License.
-The original software and documentation are available at [link to original source]. */
