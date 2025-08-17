@@ -21,6 +21,14 @@ export default function Header({ onTaskClick, onSoundClick, isPlaying }) {
             ></i>
             <p className="nav__description">Sound</p>
           </li>
+          <li
+            className="nav__item"
+            id="nav-link"
+            onClick={alert("Links clicked!")}
+          >
+            <i className="nav__icon fa-solid fa-link"></i>
+            <p className="nav__description">Links</p>
+          </li>
         </ul>
       </nav>
     </header>
