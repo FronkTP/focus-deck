@@ -15,6 +15,16 @@
     --accent-color: #bc6c25;
     --secondary-accent-color: #dda15e;
     --background-color: #e8e7de;
+    --modal-color: #f2f1ea;
+    --button-color: #e8e7de;
+}
+
+.dark-mode {
+    --primary-color: #e8e7de;
+    --accent-color: #bc6c25;
+    --secondary-accent-color: #dda15e;
+    --background-color: #283618;
+    --modal-color: #3a4428;
 }
 
 html, body {
@@ -31,6 +41,7 @@ html, body {
     flex-direction: column;
     padding: var(--margin-left-right) var(--margin-left-right) 0.75rem;
     overflow-x: hidden;
+    background-color: var(--background-color);
 }
 
 button {
@@ -41,7 +52,7 @@ button {
 }
 
 button:hover {
-    color: var(--background-color);
+    color: var(--primary-color);
     background: var(--accent-color); 
 }
 
@@ -67,7 +78,7 @@ header {
 .logo {
     font-size: 2.5rem;
     font-weight: bold;
-    color: initial;
+    color: var(--primary-color);
     text-decoration: none;
 }
 
@@ -123,7 +134,7 @@ main {
     height: calc(100vh - max(6vh, 50px) - var(--margin-left-right) - 2rem);
     min-height: 60vh;
     padding: 1em;
-    background-color: white;
+    background-color: var(--modal-color);
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
     transition: right 0.4s cubic-bezier(0.25, 0.8, 0.5, 1);
     z-index: 2;
@@ -174,7 +185,7 @@ main {
 
 .task__error {
     margin: 0.5em 0 0 1em;
-    color: red;
+    color: crimson;
 }
 
 hr {
@@ -276,7 +287,7 @@ hr {
 }
 
 .timer__mode-btn.active { 
-    color: var(--background-color);
+    color: var(--button-color);
     background: var(--accent-color); 
 }
 
@@ -317,6 +328,7 @@ footer {
     height: 1.375rem;
     margin-top: 1.5em;
     text-align: center;
+    color: var(--primary-color);
 }
 
 @media (min-width: 420px) {

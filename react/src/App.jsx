@@ -6,6 +6,37 @@ import Quote from "./components/Quote";
 import "./style.css";
 
 export default function App() {
+  const [mode, setMode] = useState("light");
+
+  const onSelectMode = (mode) => {
+    setMode(mode);
+    if (mode === "dark") document.body.classList.add("dark-mode");
+    else document.body.classList.remove("dark-mode");
+  };
+
+  useEffect(() => {
+    // Add listener to update styles
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) =>
+        onSelectMode(e.matches ? "dark" : "light")
+      );
+
+    // Setup dark/light mode for the first time
+    onSelectMode(
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light"
+    );
+
+    // Remove listener
+    return () => {
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .removeEventListener("change", () => {});
+    };
+  }, []);
+
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
   const [isTaskVisible, setIsTaskVisible] = useState(false);
@@ -49,7 +80,6 @@ export default function App() {
   }
 
   const toggleTask = (e) => {
-    e.stopPropagation();
     setIsTaskVisible((prev) => !prev);
   };
   const closeTask = () => setIsTaskVisible(false);
@@ -90,6 +120,8 @@ export default function App() {
         onTaskClick={toggleTask}
         onSoundClick={toggleSound}
         isPlaying={playing}
+        mode={mode}
+        onSelectMode={onSelectMode}
       />
       <main>
         <div className={getTaskClasses()}>
