@@ -1,41 +1,63 @@
 import { useEffect, useState } from "react";
 
 const quotes = [
-  "Don't only do the things you enjoy. Also enjoy the things you're doing.",
-  "When one door closes, another opens; but we often look so long and so regretfully upon the closed door that we do not see the one which has been opened for us.",
-  "Focus on being productive instead of busy.",
-  "If you spend too much time thinking about a thing, you'll never get it done.",
-  "Nothing is particularly hard when you divide it into small jobs.",
-  "To simplify before you understand the details is ignorance. To simplify after you understand the details is genius.",
-  "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
-  "The best time to plant a tree was 20 years ago. The second best time is now.",
-  "We always overestimate the change that will occur in the next two years and underestimate the change that will occur in the next ten. Don't let yourself be lulled into inaction.",
-  "The secret of getting ahead is getting started.",
-];
-
-const authors = [
-  "Ali Abdaal",
-  "Alexander Graham Bell",
-  "Tim Ferriss",
-  "Bruce Lee",
-  "Henry Ford",
-  "James Clear",
-  "Aristotle",
-  "Chinese Proverb",
-  "Bill Gates",
-  "Mark Twain",
+  {
+    quote:
+      "Don't only do the things you enjoy. Also enjoy the things you're doing.",
+    author: "Ali Abdaal",
+  },
+  {
+    quote:
+      "When one door closes, another opens; but we often look so long and so regretfully upon the closed door that we do not see the one which has been opened for us.",
+    author: "Alexander Graham Bell",
+  },
+  {
+    quote: "Focus on being productive instead of busy.",
+    author: "Tim Ferriss",
+  },
+  {
+    quote:
+      "If you spend too much time thinking about a thing, you'll never get it done.",
+    author: "Bruce Lee",
+  },
+  {
+    quote: "Nothing is particularly hard when you divide it into small jobs.",
+    author: "Henry Ford",
+  },
+  {
+    quote:
+      "To simplify before you understand the details is ignorance. To simplify after you understand the details is genius.",
+    author: "James Clear",
+  },
+  {
+    quote:
+      "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+    author: "Aristotle",
+  },
+  {
+    quote:
+      "The best time to plant a tree was 20 years ago. The second best time is now.",
+    author: "Chinese Proverb",
+  },
+  {
+    quote:
+      "We always overestimate the change that will occur in the next two years and underestimate the change that will occur in the next ten. Don't let yourself be lulled into inaction.",
+    author: "Bill Gates",
+  },
+  {
+    quote: "The secret of getting ahead is getting started.",
+    author: "Mark Twain",
+  },
 ];
 
 export default function Quote() {
   const [quoteData, setQuoteData] = useState({ quote: "", author: "" });
   const [loading, setLoading] = useState(true);
 
-  const generateNew = async () => {
+  const randomiseQuote = async () => {
     setLoading(true);
     try {
-      const response = await fetch(
-        "https://cors-anywhere.herokuapp.com/https://stoic.tekloon.net/stoic-quote"
-      );
+      const response = await fetch("https://stoic.tekloon.net/stoic-quote");
       const data = await response.json();
       if (data?.data?.quote && data?.data?.author) {
         setQuoteData({ quote: data.data.quote, author: data.data.author });
@@ -44,24 +66,21 @@ export default function Quote() {
       }
     } catch (error) {
       const randomIndex = Math.floor(Math.random() * quotes.length);
-      setQuoteData({
-        quote: quotes[randomIndex],
-        author: authors[randomIndex],
-      });
+      setQuoteData(quotes[randomIndex]);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    generateNew();
+    randomiseQuote();
   }, []);
 
   return (
     <div
       className="quote"
       id="quote-display"
-      onClick={generateNew}
+      onClick={randomiseQuote}
       style={{ cursor: "pointer" }}
     >
       {loading ? (
