@@ -1,13 +1,60 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, createContext } from "react";
 import Header from "./components/Header";
 import Task from "./components/Task";
+import Link from "./components/Link";
+import Setting from "./components/Setting";
 import Timer from "./components/Timer";
 import Quote from "./components/Quote";
 import "./style.css";
 
-export default function App() {
-  const [mode, setMode] = useState("light");
+// Context
+const settingContext = createContext();
+export { settingContext };
 
+export default function App() {
+  // Settings
+  const [showTask, setShowTask] = useState(true);
+  const [showSound, setShowSound] = useState(true);
+  const [showLink, setShowLink] = useState(true);
+  const [showTimer, setShowTimer] = useState(true);
+  const [showQuote, setShowQuote] = useState(true);
+
+  // Ui
+  const [mode, setMode] = useState("light");
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTaskOpen, setIsTaskOpen] = useState(false);
+  const [isSettingOpen, setSettingOpen] = useState(false);
+
+  // Sound states
+  const soundRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+
+  // Responsive
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 700px)").matches);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const getTaskClasses = () => {
+    let classes = "task";
+    if (isTaskOpen) {
+      if (isMobile) {
+        classes += " task--modal-active";
+      } else {
+        classes += " task--side-active";
+      }
+    }
+    return classes;
+  };
+
+  const shouldShift = isTaskOpen && !isMobile;
+
+  // Theme
   const onSelectMode = (mode) => {
     setMode(mode);
     if (mode === "dark") document.body.classList.add("dark-mode");
@@ -15,7 +62,6 @@ export default function App() {
   };
 
   useEffect(() => {
-    // Add listener to update styles
     window
       .matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", (e) =>
@@ -29,7 +75,6 @@ export default function App() {
         : "light"
     );
 
-    // Remove listener
     return () => {
       window
         .matchMedia("(prefers-color-scheme: dark)")
@@ -37,52 +82,11 @@ export default function App() {
     };
   }, []);
 
-  const audioRef = useRef(null);
-  const [playing, setPlaying] = useState(false);
-  const [isTaskVisible, setIsTaskVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Check if mobile view
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.matchMedia("(max-width: 700px)").matches);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  useEffect(() => {
-    audioRef.current = new Audio("./assets/sounds/nature.mp3");
-    audioRef.current.loop = true;
-    return () => audioRef.current.pause();
-  }, []);
-
-  const toggleSound = () => {
-    if (!audioRef.current) return;
-    if (playing) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setPlaying((prev) => !prev);
+  // Task
+  const toggleTask = () => {
+    setIsTaskOpen((prev) => !prev);
   };
-
-  function playSound() {
-    audioRef.current.play();
-    setPlaying(true);
-  }
-
-  function pauseSound() {
-    audioRef.current.pause();
-    setPlaying(false);
-  }
-
-  const toggleTask = (e) => {
-    setIsTaskVisible((prev) => !prev);
-  };
-  const closeTask = () => setIsTaskVisible(false);
+  const closeTask = () => setIsTaskOpen(false);
 
   useEffect(() => {
     const handleClick = (e) => {
@@ -98,49 +102,98 @@ export default function App() {
     return () => document.removeEventListener("click", handleClick);
   }, []);
 
-  // Determine task classes based on screen size and visibility
-  const getTaskClasses = () => {
-    let classes = "task";
-    if (isTaskVisible) {
-      if (isMobile) {
-        classes += " task--modal-active";
-      } else {
-        classes += " task--side-active";
-      }
+  // Sound
+  useEffect(() => {
+    soundRef.current = new Audio("./assets/sounds/nature.mp3");
+    soundRef.current.loop = true;
+    return () => soundRef.current.pause();
+  }, []);
+
+  const toggleSound = () => {
+    if (!soundRef.current) return;
+    if (playing) {
+      soundRef.current.pause();
+    } else {
+      soundRef.current.play();
     }
-    return classes;
+    setPlaying((prev) => !prev);
   };
 
-  // Determine if timer and quote should shift (only on desktop when task is visible)
-  const shouldShift = isTaskVisible && !isMobile;
+  const playSound = () => {
+    soundRef.current.play();
+    setPlaying(true);
+  };
+
+  const pauseSound = () => {
+    soundRef.current.pause();
+    setPlaying(false);
+  };
+
+  // Setting
+  const toggleSetting = () => {
+    setSettingOpen((isSettingOpen) => !isSettingOpen);
+  };
+
+  useEffect(() => {
+    if (isSettingOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    return () => document.body.classList.remove("no-scroll");
+  }, [isSettingOpen]);
 
   return (
-    <div className="container">
-      <Header
-        onTaskClick={toggleTask}
-        onSoundClick={toggleSound}
-        isPlaying={playing}
-        mode={mode}
-        onSelectMode={onSelectMode}
-      />
-      <main>
-        <div className={getTaskClasses()}>
-          <Task />
-        </div>
-        <div className="display">
-          <div className={`timer ${shouldShift ? "shift-left" : ""}`}>
-            <Timer playSound={playSound} pauseSound={pauseSound} />
+    <settingContext.Provider
+      value={{
+        showTask,
+        setShowTask,
+        showSound,
+        setShowSound,
+        showLink,
+        setShowLink,
+        showTimer,
+        setShowTimer,
+        showQuote,
+        setShowQuote,
+      }}
+    >
+      <div className="container">
+        <Header
+          onTaskClick={toggleTask}
+          onSoundClick={toggleSound}
+          onSettingClick={toggleSetting}
+          isPlaying={playing}
+          mode={mode}
+          onSelectMode={onSelectMode}
+        />
+        <main>
+          {showTask && (
+            <div className={getTaskClasses()}>
+              <Task />
+            </div>
+          )}
+          <div className="display">
+            {showTimer && (
+              <div className={`timer ${shouldShift ? "shift-left" : ""}`}>
+                <Timer playSound={playSound} pauseSound={pauseSound} />
+              </div>
+            )}
+            {showQuote && (
+              <div className={`quote ${shouldShift ? "shift-left" : ""}`}>
+                <Quote />
+              </div>
+            )}
           </div>
-          <div className={`quote ${shouldShift ? "shift-left" : ""}`}>
-            <Quote />
+        </main>
+        <footer>
+          <div>
+            <p>&copy; {new Date().getFullYear()} Fronk. All Rights Reserved</p>
           </div>
-        </div>
-      </main>
-      <footer>
-        <div>
-          <p>&copy; {new Date().getFullYear()} Fronk. All Rights Reserved</p>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+      {isSettingOpen && <Setting toggleSetting={toggleSetting} />}
+    </settingContext.Provider>
   );
 }
