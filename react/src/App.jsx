@@ -165,8 +165,6 @@ export default function App() {
           onSoundClick={toggleSound}
           onSettingClick={toggleSetting}
           isPlaying={playing}
-          mode={mode}
-          onSelectMode={onSelectMode}
         />
         <main>
           {showTask && (
@@ -193,7 +191,13 @@ export default function App() {
           </div>
         </footer>
       </div>
-      {isSettingOpen && <Setting toggleSetting={toggleSetting} />}
+      {isSettingOpen && (
+        <Setting
+          mode={mode}
+          onSelectMode={onSelectMode}
+          toggleSetting={toggleSetting}
+        />
+      )}
     </settingContext.Provider>
   );
 }
