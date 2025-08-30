@@ -8,7 +8,7 @@
 
 :root {
   --margin-left-right: 1rem;
-  --margin-modal-vertical: 0.75rem;
+  --margin-modal-vertical: 2.25rem;
   --margin-modal-horizontal: 2rem;
   --font-size: 0.825rem;
   --timer-display-font-size: 4rem;
@@ -60,6 +60,7 @@ button {
 button:hover {
   color: var(--button-background);
   background: var(--accent-color);
+  transform: scale(1.05);
 }
 
 button:active {
@@ -137,6 +138,16 @@ main {
 
 /* Modal */
 
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
 .modal {
   position: fixed;
   z-index: 3;
@@ -144,10 +155,22 @@ main {
   right: 0;
   bottom: 0;
   left: 0;
-  margin: 2rem;
-  padding: var(--margin-modal-vertical) var(--margin-modal-horizontal);
-  background-color: var(--secondary-color);
+  margin: 4rem;
+  color: var(--primary-color);
+  background-color: var(--background-color);
   border-radius: 10px;
+  overflow-y: scroll;
+}
+
+.modal__bar {
+  padding: var(--margin-modal-vertical) var(--margin-modal-horizontal);
+  font-size: calc(var(--font-size) * 1.5);
+  font-weight: bold;
+  color: var(--button-background);
+  background-color: var(--accent-color);
+  border-radius: 10px 10px 0 0;
+  /* border-top-left-radius: 10px;
+  border-top-right-radius: 10px; */
 }
 
 .modal__close {
@@ -159,7 +182,35 @@ main {
   border: none;
 }
 
+.modal__body {
+  padding: var(--margin-modal-vertical) var(--margin-modal-horizontal);
+}
+
+.modal__group {
+  margin-bottom: var(--margin-modal-vertical);
+  padding: var(--margin-modal-horizontal);
+  border: 2px solid var(--accent-color);
+  border-radius: 10px;
+}
+
+.modal__group > p {
+  width: 100px;
+  margin-top: calc(-16px - var(--margin-modal-horizontal));
+  margin-left: var(--margin-modal-horizontal);
+  margin-bottom: var(--margin-modal-horizontal);
+  text-align: center;
+  font-size: var(--font-size);
+  background: var(--background-color);
+}
+
 /* Setting */
+
+.setting__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: var(--font-size);
+}
 
 /* Task */
 

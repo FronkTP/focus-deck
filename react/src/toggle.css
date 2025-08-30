@@ -1,0 +1,112 @@
+.toggle-switch {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+/* .toggle-switch:hover {
+  transform: scale(1.05);
+} */
+
+.toggle-track {
+  width: 70px;
+  height: 34px;
+  border-radius: 17px;
+  position: relative;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.toggle-track.theme.left {
+  background: grey;
+}
+
+.toggle-track.theme.right {
+  background: var(--accent-color);
+}
+
+.toggle-track.left {
+  background: grey;
+}
+
+.toggle-track.right {
+  background: var(--accent-color);
+}
+
+.icon-container {
+  position: relative;
+  z-index: 2;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+/* Icon states */
+.left .sun-container,
+.right .moon-container {
+  opacity: 1;
+}
+
+.left .moon-container,
+.right .sun-container {
+  opacity: 0.4;
+}
+
+.toggle-icon {
+  transition: color 0.3s ease;
+}
+
+.sun-icon,
+.moon-icon {
+  transition: color 0.3s ease;
+}
+
+/* Icon colors */
+.left .sun-icon,
+.right .moon-icon {
+  color: var(--accent-color);
+}
+
+.left .moon-icon,
+.right .sun-icon {
+  color: var(--button-background);
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 30px;
+  height: 30px;
+  background: var(--button-background);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* .theme .toggle-slider {
+  background: var(--accent-color);
+} */
+
+.toggle-slider.right {
+  transform: translateX(36px);
+}
+
+.toggle-slider.left {
+  transform: translateX(0px);
+}
+
+.toggle-label {
+  width: 5rem;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}

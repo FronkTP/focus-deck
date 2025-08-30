@@ -6,6 +6,7 @@ import Setting from "./components/Setting";
 import Timer from "./components/Timer";
 import Quote from "./components/Quote";
 import "./style.css";
+import "./toggle.css";
 
 // Context
 const settingContext = createContext();
@@ -61,24 +62,23 @@ export default function App() {
     else document.body.classList.remove("dark-mode");
   };
 
-  useEffect(() => {
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", (e) =>
-        onSelectMode(e.matches ? "dark" : "light")
-      );
+  const toggleMode = () => {
+    onSelectMode(mode === "dark" ? "light" : "dark");
+  };
 
-    // Setup dark/light mode for the first time
-    onSelectMode(
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light"
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+    window;
+    mediaQuery.addEventListener("change", (e) =>
+      onSelectMode(e.matches ? "dark" : "light")
     );
 
+    // Setup dark/light mode for the first time
+    onSelectMode(mediaQuery.matches ? "dark" : "light");
+
     return () => {
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .removeEventListener("change", () => {});
+      mediaQuery.removeEventListener("change", () => {});
     };
   }, []);
 
@@ -194,7 +194,7 @@ export default function App() {
       {isSettingOpen && (
         <Setting
           mode={mode}
-          onSelectMode={onSelectMode}
+          toggleMode={toggleMode}
           toggleSetting={toggleSetting}
         />
       )}
