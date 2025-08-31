@@ -149,6 +149,8 @@ main {
 }
 
 .modal {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   z-index: 3;
   top: 0;
@@ -159,7 +161,7 @@ main {
   color: var(--primary-color);
   background-color: var(--background-color);
   border-radius: 10px;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 
 .modal__bar {
@@ -183,14 +185,19 @@ main {
 }
 
 .modal__body {
+  flex: 1;
   padding: var(--margin-modal-vertical) var(--margin-modal-horizontal);
+  overflow-y: auto;
 }
 
 .modal__group {
-  margin-bottom: var(--margin-modal-vertical);
   padding: var(--margin-modal-horizontal);
   border: 2px solid var(--accent-color);
   border-radius: 10px;
+}
+
+.modal__group:not(:last-child) {
+  margin-bottom: var(--margin-modal-vertical);
 }
 
 .modal__group > p {
@@ -208,8 +215,11 @@ main {
 .setting__item {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
   font-size: var(--font-size);
+}
+
+.setting__item:not(:last-child) {
+  margin-bottom: 1rem;
 }
 
 /* Task */
