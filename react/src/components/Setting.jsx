@@ -16,8 +16,8 @@ export default function Setting({ mode, toggleMode, toggleSetting }) {
   } = useContext(settingContext);
 
   return (
-    <div className="overlay">
-      <div className="modal">
+    <div className="overlay" onClick={toggleSetting}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="header modal__bar">
           <p>Setting</p>
           <button className="modal__close" onClick={toggleSetting}>
