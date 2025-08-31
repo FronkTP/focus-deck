@@ -4,6 +4,7 @@ import { settingContext } from "../App";
 export default function Header({
   onTaskClick,
   onSoundClick,
+  onLinkClick,
   onSettingClick,
   isPlaying,
 }) {
@@ -40,11 +41,7 @@ export default function Header({
             </li>
           )}
           {showLink && (
-            <li
-              className="nav__item"
-              id="nav-link"
-              onClick={() => alert("Links clicked!")}
-            >
+            <li className="nav__item" id="nav-link" onClick={onLinkClick}>
               <i className="nav__icon fa-solid fa-link"></i>
               <p className="nav__description">Links</p>
             </li>

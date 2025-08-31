@@ -24,6 +24,7 @@ export default function App() {
   const [mode, setMode] = useState("light");
   const [isMobile, setIsMobile] = useState(false);
   const [isTaskOpen, setIsTaskOpen] = useState(false);
+  const [isLinkOpen, setIsLinkOpen] = useState(false);
   const [isSettingOpen, setSettingOpen] = useState(false);
 
   // Sound states
@@ -129,20 +130,26 @@ export default function App() {
     setPlaying(false);
   };
 
+  // Link
+
+  const toggleLink = () => {
+    setIsLinkOpen((isLinkOpen) => !isLinkOpen);
+  };
+
   // Setting
   const toggleSetting = () => {
     setSettingOpen((isSettingOpen) => !isSettingOpen);
   };
 
   useEffect(() => {
-    if (isSettingOpen) {
+    if (isSettingOpen || isLinkOpen) {
       document.body.classList.add("no-scroll");
     } else {
       document.body.classList.remove("no-scroll");
     }
 
     return () => document.body.classList.remove("no-scroll");
-  }, [isSettingOpen]);
+  }, [isSettingOpen, isLinkOpen]);
 
   return (
     <settingContext.Provider
@@ -163,6 +170,7 @@ export default function App() {
         <Header
           onTaskClick={toggleTask}
           onSoundClick={toggleSound}
+          onLinkClick={toggleLink}
           onSettingClick={toggleSetting}
           isPlaying={playing}
         />
@@ -191,6 +199,7 @@ export default function App() {
           </div>
         </footer>
       </div>
+      {isLinkOpen && <Link toggleLink={toggleLink} />}
       {isSettingOpen && (
         <Setting
           mode={mode}
