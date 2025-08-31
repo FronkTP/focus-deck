@@ -24,31 +24,37 @@ export default function Header({
               onClick={onTaskClick}
             >
               <i className="nav__icon fa-solid fa-check"></i>
-              <p className="nav__description">Tasks</p>
+              {/* <p className="nav__description">Tasks</p> */}
             </li>
           )}
           {showSound && (
             <li className="nav__item" id="nav-sound" onClick={onSoundClick}>
-              <i
-                className="nav__icon fa-solid fa-volume-xmark"
-                style={{ display: isPlaying ? "none" : "block" }}
-              ></i>
-              <i
-                className="nav__icon fa-solid fa-volume-high"
-                style={{ display: isPlaying ? "block" : "none" }}
-              ></i>
-              <p className="nav__description">Sound</p>
+              <div>
+                <i
+                  className="nav__icon fa-solid fa-volume-xmark"
+                  style={{ display: isPlaying ? "none" : "block" }}
+                ></i>
+                <i
+                  className="nav__icon fa-solid fa-volume-high"
+                  style={{ display: isPlaying ? "block" : "none" }}
+                ></i>
+                <i
+                  className="nav__icon fa-solid fa-angle-down"
+                  id="sound-dropdown"
+                ></i>
+              </div>
+              {/* <p className="nav__description">Sound</p> */}
             </li>
           )}
           {showLink && (
             <li className="nav__item" id="nav-link" onClick={onLinkClick}>
               <i className="nav__icon fa-solid fa-link"></i>
-              <p className="nav__description">Links</p>
+              {/* <p className="nav__description">Links</p> */}
             </li>
           )}
           <li className="nav__item" id="nav-link" onClick={onSettingClick}>
             <i className="nav__icon fa-solid fa-gears"></i>
-            <p className="nav__description">Setting</p>
+            {/* <p className="nav__description">Setting</p> */}
           </li>
         </ul>
       </nav>
