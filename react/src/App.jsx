@@ -28,8 +28,9 @@ export default function App() {
   const [isSettingOpen, setSettingOpen] = useState(false);
 
   // Sound states
+  const [soundFile, setSoundFile] = useState("./assets/sounds/nature.mp3");
   const soundRef = useRef(null);
-  const [playing, setPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Responsive
   useEffect(() => {
@@ -105,29 +106,35 @@ export default function App() {
 
   // Sound
   useEffect(() => {
-    soundRef.current = new Audio("./assets/sounds/nature.mp3");
+    if (soundRef.current) soundRef.current.pause();
+    soundRef.current = new Audio(soundFile);
     soundRef.current.loop = true;
-    return () => soundRef.current.pause();
-  }, []);
+    if (isPlaying) soundRef.current.play();
+    return () => {
+      if (soundRef.current) {
+        soundRef.current.pause();
+      }
+    };
+  }, [soundFile, isPlaying]);
 
   const toggleSound = () => {
     if (!soundRef.current) return;
-    if (playing) {
+    if (isPlaying) {
       soundRef.current.pause();
     } else {
       soundRef.current.play();
     }
-    setPlaying((prev) => !prev);
+    setIsPlaying((prev) => !prev);
   };
 
   const playSound = () => {
     soundRef.current.play();
-    setPlaying(true);
+    setIsPlaying(true);
   };
 
   const pauseSound = () => {
     soundRef.current.pause();
-    setPlaying(false);
+    setIsPlaying(false);
   };
 
   // Link
@@ -170,9 +177,10 @@ export default function App() {
         <Header
           onTaskClick={toggleTask}
           onSoundClick={toggleSound}
+          setSoundFile={setSoundFile}
           onLinkClick={toggleLink}
           onSettingClick={toggleSetting}
-          isPlaying={playing}
+          isPlaying={isPlaying}
         />
         <main>
           {showTask && (

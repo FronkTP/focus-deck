@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { settingContext } from "../App";
+import Sound from "./Sound";
 
 export default function Header({
   onTaskClick,
   onSoundClick,
+  setSoundFile,
   onLinkClick,
   onSettingClick,
   isPlaying,
@@ -28,23 +30,11 @@ export default function Header({
             </li>
           )}
           {showSound && (
-            <li className="nav__item" id="nav-sound" onClick={onSoundClick}>
-              <div>
-                <i
-                  className="nav__icon fa-solid fa-volume-xmark"
-                  style={{ display: isPlaying ? "none" : "block" }}
-                ></i>
-                <i
-                  className="nav__icon fa-solid fa-volume-high"
-                  style={{ display: isPlaying ? "block" : "none" }}
-                ></i>
-                <i
-                  className="nav__icon fa-solid fa-angle-down"
-                  id="sound-dropdown"
-                ></i>
-              </div>
-              {/* <p className="nav__description">Sound</p> */}
-            </li>
+            <Sound
+              isPlaying={isPlaying}
+              onSoundClick={onSoundClick}
+              setSoundFile={setSoundFile}
+            />
           )}
           {showLink && (
             <li className="nav__item" id="nav-link" onClick={onLinkClick}>
