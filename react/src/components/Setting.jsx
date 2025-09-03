@@ -1,7 +1,12 @@
 import { useContext } from "react";
 import { settingContext } from "../App";
 
-export default function Setting({ mode, toggleMode, toggleSetting }) {
+export default function Setting({
+  mode,
+  toggleMode,
+  setBackground,
+  toggleSetting,
+}) {
   const {
     showTask,
     setShowTask,
@@ -30,7 +35,8 @@ export default function Setting({ mode, toggleMode, toggleSetting }) {
             <ul>
               <li className="setting__item">
                 <p className="toggle-label">
-                  {mode.charAt(0).toUpperCase() + mode.slice(1)}
+                  {/* {mode.charAt(0).toUpperCase() + mode.slice(1)}  */}
+                  Mode
                 </p>
                 <button
                   className="toggle-switch"
@@ -79,6 +85,131 @@ export default function Setting({ mode, toggleMode, toggleSetting }) {
                 </button>
               </li>
             </ul>
+            <div className="setting__wallpaper">
+              <p className="setting__wallpaper-title">Wallpaper</p>
+              <div className="setting__wallpaper-container">
+                {/* <div
+                  className="setting__wallpaper-item"
+                  onClick={() => {
+                    setBackground({
+                      type: "color",
+                      value: "rgb(242, 241, 234)",
+                    });
+                  }}
+                >
+                  <div
+                    style={{ backgroundColor: "rgb(242, 241, 234)" }}
+                    className="setting__wallpaper-color"
+                  ></div>
+                  <p className="setting__wallpaper-label">Light</p>
+                </div>
+                <div
+                  className="setting__wallpaper-item"
+                  onClick={() => {
+                    setBackground({
+                      type: "color",
+                      value: "rgb(40, 54, 24)",
+                    });
+                  }}
+                >
+                  <div
+                    style={{ backgroundColor: "rgb(40, 54, 24)" }}
+                    className="setting__wallpaper-color"
+                  ></div>
+                  <p className="setting__wallpaper-label">Dark</p>
+                </div> */}
+                <div
+                  className="setting__wallpaper-item"
+                  onClick={() => {
+                    setBackground({
+                      type: "image",
+                      value: "./assets/images/nature1.jpg",
+                    });
+                  }}
+                >
+                  <img
+                    src="./assets/images/nature1.jpg"
+                    className="setting__wallpaper-img"
+                  />
+                  <p className="setting__wallpaper-label">Nature 1</p>
+                </div>
+                <div
+                  className="setting__wallpaper-item"
+                  onClick={() => {
+                    setBackground({
+                      type: "image",
+                      value: "./assets/images/nature2.jpg",
+                    });
+                  }}
+                >
+                  <img
+                    src="./assets/images/nature2.jpg"
+                    className="setting__wallpaper-img"
+                  />
+                  <p className="setting__wallpaper-label">Nature 2</p>
+                </div>
+                <div
+                  className="setting__wallpaper-item"
+                  onClick={() => {
+                    setBackground({
+                      type: "image",
+                      value: "./assets/images/cafe.jpg",
+                    });
+                  }}
+                >
+                  <img
+                    src="./assets/images/cafe.jpg"
+                    className="setting__wallpaper-img"
+                  />
+                  <p className="setting__wallpaper-label">Cafe</p>
+                </div>
+                <div
+                  className="setting__wallpaper-item"
+                  onClick={() => {
+                    setBackground({
+                      type: "image",
+                      value: "./assets/images/city1.jpg",
+                    });
+                  }}
+                >
+                  <img
+                    src="./assets/images/city1.jpg"
+                    className="setting__wallpaper-img"
+                  />
+                  <p className="setting__wallpaper-label">City 1</p>
+                </div>
+                <div
+                  className="setting__wallpaper-item"
+                  onClick={() => {
+                    setBackground({
+                      type: "image",
+                      value: "./assets/images/city2.jpg",
+                    });
+                  }}
+                >
+                  <img
+                    src="./assets/images/city2.jpg"
+                    className="setting__wallpaper-img"
+                  />
+                  <p className="setting__wallpaper-label">City 2</p>
+                </div>
+                <div
+                  className="setting__wallpaper-item"
+                  onClick={() => {
+                    setBackground({
+                      type: "image",
+                      value: "./assets/images/japan.jpg",
+                    });
+                  }}
+                >
+                  <img
+                    src="./assets/images/japan.jpg"
+                    className="setting__wallpaper-img"
+                  />
+                  <p className="setting__wallpaper-label">Japan</p>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="modal__group">
             <p>Widgets</p>
@@ -195,6 +326,12 @@ export default function Setting({ mode, toggleMode, toggleSetting }) {
               </li>
             </ul>
           </div>
+          <p>
+            Some images are design by{" "}
+            <a href="https://www.freepik.com/" className="attribution">
+              Freepik
+            </a>
+          </p>
         </div>
       </div>
     </div>

@@ -35,10 +35,16 @@ body {
   height: 100%;
   font-family: "Mulish", sans-serif;
   color: var(--primary-color);
+}
+
+.color-background {
   background-color: var(--background-color);
-  /* background-image: url("https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2348&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+.image-background {
   background-color: rgba(0, 0, 0, 0.5);
-  background-blend-mode: darken; */
+  background-size: cover;
+  background-blend-mode: darken;
 }
 
 .container {
@@ -48,7 +54,7 @@ body {
   flex-direction: column;
   padding: var(--margin-left-right) var(--margin-left-right) 0.75rem;
   overflow-x: hidden;
-  background-color: var(--background-color);
+  /* background-color: var(--background-color); */
 }
 
 button {
@@ -57,7 +63,7 @@ button {
   background-color: var(--button-background);
   border-radius: 40px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 button:hover {
@@ -217,7 +223,58 @@ main {
   background: var(--background-color);
 }
 
+.attribution {
+  color: var(--accent-color);
+}
+
 /* Setting */
+
+.setting__wallpaper {
+  margin-top: 1rem;
+  font-size: var(--font-size);
+}
+
+.setting__wallpaper-container {
+  display: flex;
+  overflow-x: auto;
+}
+
+.setting__wallpaper-title {
+  margin-bottom: 1rem;
+}
+
+.setting__wallpaper-item {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.setting__wallpaper-item:not(:last-child) {
+  margin-right: 1.5rem;
+}
+
+.setting__wallpaper-color,
+.setting__wallpaper-img {
+  width: 150px;
+  height: 100px;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.setting__wallpaper-color {
+  border: 1px solid black;
+}
+
+.setting__wallpaper-color:hover,
+.setting__wallpaper-img:hover {
+  transition: transform 0.2s ease;
+  transform: scale(1.05);
+}
+
+.setting__wallpaper-label {
+  text-align: center;
+}
 
 .setting__item {
   display: flex;

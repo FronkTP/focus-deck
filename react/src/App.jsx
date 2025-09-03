@@ -22,6 +22,10 @@ export default function App() {
 
   // Ui
   const [mode, setMode] = useState("light");
+  const [background, setBackground] = useState({
+    type: "color",
+    value: "rgb(40, 54, 24)", // color or image URL
+  });
   const [isMobile, setIsMobile] = useState(false);
   const [isTaskOpen, setIsTaskOpen] = useState(false);
   const [isLinkOpen, setIsLinkOpen] = useState(false);
@@ -173,7 +177,16 @@ export default function App() {
         setShowQuote,
       }}
     >
-      <div className="container">
+      <div
+        className={`container ${
+          background.type == "color" ? "color-background" : "image-background"
+        }`}
+        style={
+          background.type == "color"
+            ? { backgroundColor: background.value }
+            : { backgroundImage: `url(${background.value})` }
+        }
+      >
         <Header
           onTaskClick={toggleTask}
           onSoundClick={toggleSound}
@@ -212,6 +225,7 @@ export default function App() {
         <Setting
           mode={mode}
           toggleMode={toggleMode}
+          setBackground={setBackground}
           toggleSetting={toggleSetting}
         />
       )}
