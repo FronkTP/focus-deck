@@ -7,6 +7,7 @@ import Timer from "./components/Timer";
 import Quote from "./components/Quote";
 import "./style.css";
 import "./toggle.css";
+import COLOURS from "./COLOURS";
 
 // Context
 const settingContext = createContext();
@@ -21,10 +22,10 @@ export default function App() {
   const [showQuote, setShowQuote] = useState(true);
 
   // Ui
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState("dark");
   const [background, setBackground] = useState({
     type: "color",
-    value: "rgb(40, 54, 24)", // color or image URL
+    value: "dark", // color or image URL
   });
   const [isMobile, setIsMobile] = useState(false);
   const [isTaskOpen, setIsTaskOpen] = useState(false);
@@ -64,8 +65,11 @@ export default function App() {
   // Theme
   const onSelectMode = (mode) => {
     setMode(mode);
-    if (mode === "dark") document.body.classList.add("dark-mode");
-    else document.body.classList.remove("dark-mode");
+    if (mode === "dark") {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
   };
 
   const toggleMode = () => {
@@ -179,11 +183,13 @@ export default function App() {
     >
       <div
         className={`container ${
-          background.type == "color" ? "color-background" : "image-background"
+          background.type == "color" ? "" : "image-background"
         }`}
         style={
           background.type == "color"
-            ? { backgroundColor: background.value }
+            ? COLOURS[background.value].type === "gradient"
+              ? { backgroundImage: COLOURS[background.value].value }
+              : { backgroundColor: COLOURS[background.value].value }
             : { backgroundImage: `url(${background.value})` }
         }
       >
@@ -224,6 +230,7 @@ export default function App() {
       {isSettingOpen && (
         <Setting
           mode={mode}
+          onSelectMode={onSelectMode}
           toggleMode={toggleMode}
           setBackground={setBackground}
           toggleSetting={toggleSetting}

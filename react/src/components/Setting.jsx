@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { settingContext } from "../App";
+import COLOURS from "../COLOURS";
 
 export default function Setting({
   mode,
+  onSelectMode,
   toggleMode,
   setBackground,
   toggleSetting,
@@ -88,36 +90,45 @@ export default function Setting({
             <div className="setting__wallpaper">
               <p className="setting__wallpaper-title">Wallpaper</p>
               <div className="setting__wallpaper-container">
-                {/* <div
+                <div
                   className="setting__wallpaper-item"
                   onClick={() => {
+                    onSelectMode(`${mode == "light" ? "dark" : "light"}`);
                     setBackground({
                       type: "color",
-                      value: "rgb(242, 241, 234)",
+                      value: `${mode == "light" ? "dark" : "light"}`,
                     });
                   }}
                 >
                   <div
-                    style={{ backgroundColor: "rgb(242, 241, 234)" }}
+                    style={{
+                      background: `${
+                        mode == "light"
+                          ? COLOURS.dark.value
+                          : COLOURS.light.value
+                      }`,
+                    }}
                     className="setting__wallpaper-color"
                   ></div>
-                  <p className="setting__wallpaper-label">Light</p>
+                  <p className="setting__wallpaper-label">Default</p>
                 </div>
                 <div
                   className="setting__wallpaper-item"
                   onClick={() => {
                     setBackground({
                       type: "color",
-                      value: "rgb(40, 54, 24)",
+                      value: "bubbleGum",
                     });
                   }}
                 >
                   <div
-                    style={{ backgroundColor: "rgb(40, 54, 24)" }}
+                    style={{
+                      background: COLOURS.bubbleGum.value,
+                    }}
                     className="setting__wallpaper-color"
                   ></div>
-                  <p className="setting__wallpaper-label">Dark</p>
-                </div> */}
+                  <p className="setting__wallpaper-label">Bubble Gum</p>
+                </div>
                 <div
                   className="setting__wallpaper-item"
                   onClick={() => {

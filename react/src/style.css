@@ -239,18 +239,11 @@ main {
   overflow-x: auto;
 }
 
-.setting__wallpaper-title {
-  margin-bottom: 1rem;
-}
-
 .setting__wallpaper-item {
   display: flex;
+  margin: 0.75rem;
   flex-direction: column;
   cursor: pointer;
-}
-
-.setting__wallpaper-item:not(:last-child) {
-  margin-right: 1.5rem;
 }
 
 .setting__wallpaper-color,
@@ -260,10 +253,6 @@ main {
   margin-bottom: 0.5rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
-
-.setting__wallpaper-color {
-  border: 1px solid black;
 }
 
 .setting__wallpaper-color:hover,
