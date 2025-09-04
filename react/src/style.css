@@ -412,6 +412,42 @@ hr {
   font-size: calc(var(--font-size) / 1.5);
 }
 
+/* Link */
+.link__form {
+  max-width: 1000px;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.link__container-title,
+.link__container-url {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.link__container-title {
+  flex-grow: 1;
+}
+
+.link__container-url {
+  flex-grow: 4;
+}
+
+.link__input {
+  padding: 0.5em 1em;
+  background-color: var(--button-background);
+  border-radius: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.link__add-btn {
+  width: 5rem;
+  padding: 0.5em;
+  flex-shrink: 0;
+}
+
 /* Timer */
 
 .timer,
