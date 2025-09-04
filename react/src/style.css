@@ -64,6 +64,7 @@ button {
   border-radius: 40px;
   cursor: pointer;
   transition: transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
@@ -195,6 +196,7 @@ main {
   color: var(--button-background);
   background-color: transparent;
   border: none;
+  box-shadow: none;
 }
 
 .modal__body {
