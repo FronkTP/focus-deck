@@ -5,7 +5,7 @@ export default function Task() {
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim() === "") {
       setError("The task can't be empty!");
@@ -14,19 +14,19 @@ export default function Task() {
     setTasks((prev) => [...prev, { text: input.trim(), completed: false }]);
     setInput("");
     setError("");
-  }
+  };
 
-  function handleDelete(index) {
+  const handleDelete = (index) => {
     setTasks(tasks.filter((_, i) => i !== index));
-  }
+  };
 
-  function toggleComplete(index) {
+  const toggleComplete = (index) => {
     setTasks(
       tasks.map((task, i) =>
         i === index ? { ...task, completed: !task.completed } : task
       )
     );
-  }
+  };
 
   return (
     <>
