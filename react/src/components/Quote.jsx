@@ -54,22 +54,28 @@ export default function Quote() {
   const [quoteData, setQuoteData] = useState({ quote: "", author: "" });
   const [loading, setLoading] = useState(true);
 
-  const randomiseQuote = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("https://stoic.tekloon.net/stoic-quote");
-      const data = await response.json();
-      if (data?.data?.quote && data?.data?.author) {
-        setQuoteData({ quote: data.data.quote, author: data.data.author });
-      } else {
-        throw new Error("Invalid API response");
-      }
-    } catch (error) {
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      setQuoteData(quotes[randomIndex]);
-    } finally {
-      setLoading(false);
-    }
+  // const randomiseQuote = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await fetch("https://stoic.tekloon.net/stoic-quote");
+  //     const data = await response.json();
+  //     if (data?.data?.quote && data?.data?.author) {
+  //       setQuoteData({ quote: data.data.quote, author: data.data.author });
+  //     } else {
+  //       throw new Error("Invalid API response");
+  //     }
+  //   } catch (error) {
+  //     const randomIndex = Math.floor(Math.random() * quotes.length);
+  //     setQuoteData(quotes[randomIndex]);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const randomiseQuote = () => {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    setQuoteData(quotes[randomIndex]);
+    setLoading(false);
   };
 
   useEffect(() => {
