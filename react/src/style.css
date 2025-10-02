@@ -309,9 +309,12 @@ main {
 .task__form {
 }
 
+.task__header {
+  margin: 0 1em 0.5em;
+}
+
 .task__input-label {
   display: block;
-  margin: 0 0 0.5em 1em;
 }
 
 .task__input-container {

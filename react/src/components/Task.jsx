@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Task() {
+export default function Task({ closeTask }) {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
@@ -31,9 +31,14 @@ export default function Task() {
   return (
     <>
       <form className="task__form" onSubmit={handleSubmit}>
-        <label htmlFor="task-input" className="task__input-label">
-          Add a new task
-        </label>
+        <div className="header task__header">
+          <label htmlFor="task-input" className="task__input-label">
+            Add a new task
+          </label>
+          <button className="modal__close" onClick={closeTask}>
+            <i className="fa-solid fa-xmark"></i>
+          </button>
+        </div>
         <div className="task__input-container">
           <input
             id="task-input"

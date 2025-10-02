@@ -204,7 +204,7 @@ export default function App() {
         <main>
           {showTask && (
             <div className={getTaskClasses()}>
-              <Task />
+              <Task closeTask={closeTask} />
             </div>
           )}
           <div className="display">
