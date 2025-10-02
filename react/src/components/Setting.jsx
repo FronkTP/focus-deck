@@ -90,13 +90,17 @@ export default function Setting({
             <div className="setting__wallpaper">
               <p className="setting__wallpaper-title">Wallpaper</p>
               <div className="setting__wallpaper-container">
-                <div
+                {/* <div
                   className="setting__wallpaper-item"
                   onClick={() => {
                     onSelectMode(`${mode == "light" ? "dark" : "light"}`);
                     setBackground({
                       type: "color",
-                      value: `${mode == "light" ? "dark" : "light"}`,
+                      value: `${
+                        mode == "light"
+                          ? COLOURS.dark.value
+                          : COLOURS.light.value
+                      }`,
                     });
                   }}
                 >
@@ -110,115 +114,51 @@ export default function Setting({
                     }}
                     className="setting__wallpaper-color"
                   ></div>
-                  <p className="setting__wallpaper-label">Default</p>
-                </div>
-                <div
-                  className="setting__wallpaper-item"
-                  onClick={() => {
-                    setBackground({
-                      type: "color",
-                      value: "bubbleGum",
-                    });
-                  }}
-                >
-                  <div
-                    style={{
-                      background: COLOURS.bubbleGum.value,
-                    }}
-                    className="setting__wallpaper-color"
-                  ></div>
-                  <p className="setting__wallpaper-label">Bubble Gum</p>
-                </div>
-                <div
-                  className="setting__wallpaper-item"
-                  onClick={() => {
-                    setBackground({
-                      type: "image",
-                      value: "./assets/images/nature1.jpg",
-                    });
-                  }}
-                >
-                  <img
-                    src="./assets/images/nature1.jpg"
-                    className="setting__wallpaper-img"
-                  />
-                  <p className="setting__wallpaper-label">Nature 1</p>
-                </div>
-                <div
-                  className="setting__wallpaper-item"
-                  onClick={() => {
-                    setBackground({
-                      type: "image",
-                      value: "./assets/images/nature2.jpg",
-                    });
-                  }}
-                >
-                  <img
-                    src="./assets/images/nature2.jpg"
-                    className="setting__wallpaper-img"
-                  />
-                  <p className="setting__wallpaper-label">Nature 2</p>
-                </div>
-                <div
-                  className="setting__wallpaper-item"
-                  onClick={() => {
-                    setBackground({
-                      type: "image",
-                      value: "./assets/images/cafe.jpg",
-                    });
-                  }}
-                >
-                  <img
-                    src="./assets/images/cafe.jpg"
-                    className="setting__wallpaper-img"
-                  />
-                  <p className="setting__wallpaper-label">Cafe</p>
-                </div>
-                <div
-                  className="setting__wallpaper-item"
-                  onClick={() => {
-                    setBackground({
-                      type: "image",
-                      value: "./assets/images/city1.jpg",
-                    });
-                  }}
-                >
-                  <img
-                    src="./assets/images/city1.jpg"
-                    className="setting__wallpaper-img"
-                  />
-                  <p className="setting__wallpaper-label">City 1</p>
-                </div>
-                <div
-                  className="setting__wallpaper-item"
-                  onClick={() => {
-                    setBackground({
-                      type: "image",
-                      value: "./assets/images/city2.jpg",
-                    });
-                  }}
-                >
-                  <img
-                    src="./assets/images/city2.jpg"
-                    className="setting__wallpaper-img"
-                  />
-                  <p className="setting__wallpaper-label">City 2</p>
-                </div>
-                <div
-                  className="setting__wallpaper-item"
-                  onClick={() => {
-                    setBackground({
-                      type: "image",
-                      value: "./assets/images/japan.jpg",
-                    });
-                  }}
-                >
-                  <img
-                    src="./assets/images/japan.jpg"
-                    className="setting__wallpaper-img"
-                  />
-                  <p className="setting__wallpaper-label">Japan</p>
-                </div>
+                  <p className="setting__wallpaper-label">
+                    {COLOURS.light.title}
+                  </p>
+                </div> */}
+                {Object.entries(COLOURS).map(([key, item]) => {
+                  return (
+                    <div
+                      key={key}
+                      className="setting__wallpaper-item"
+                      onClick={() => {
+                        onSelectMode(
+                          item.title === "Default"
+                            ? "light"
+                            : item.title === "Default Dark"
+                            ? "dark"
+                            : mode
+                        );
+                        setBackground({
+                          type: item.type,
+                          value:
+                            item.title === "Default Light"
+                              ? COLOURS.light.value
+                              : item.title === "Default Dark"
+                              ? COLOURS.dark.value
+                              : item.value,
+                        });
+                      }}
+                    >
+                      {item.type == "color" || item.type == "gradient" ? (
+                        <div
+                          style={{
+                            background: item.value,
+                          }}
+                          className="setting__wallpaper-color"
+                        ></div>
+                      ) : (
+                        <img
+                          src={item.value}
+                          className="setting__wallpaper-img"
+                        />
+                      )}
+                      <p className="setting__wallpaper-label">{item.title}</p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

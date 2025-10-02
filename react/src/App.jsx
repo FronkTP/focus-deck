@@ -7,7 +7,6 @@ import Timer from "./components/Timer";
 import Quote from "./components/Quote";
 import "./style.css";
 import "./toggle.css";
-import COLOURS from "./COLOURS";
 
 // Context
 const settingContext = createContext();
@@ -184,13 +183,13 @@ export default function App() {
     >
       <div
         className={`container ${
-          background.type == "color" ? "" : "image-background"
+          background.type == "image" ? "image-background" : ""
         }`}
         style={
           background.type == "color"
-            ? COLOURS[background.value].type === "gradient"
-              ? { backgroundImage: COLOURS[background.value].value }
-              : { backgroundColor: COLOURS[background.value].value }
+            ? { backgroundColor: background.value }
+            : background.type == "gradient"
+            ? { backgroundImage: background.value }
             : { backgroundImage: `url(${background.value})` }
         }
       >
