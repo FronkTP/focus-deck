@@ -567,6 +567,9 @@ footer {
   .display {
     height: 60%;
   }
+  .modal {
+    margin: 2rem 1rem;
+  }
   .task {
     height: calc(100vh - max(25vw, 280px) - 3 * var(--margin-left-right));
   }
