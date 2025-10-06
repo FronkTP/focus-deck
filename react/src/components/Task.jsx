@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Task({ closeTask }) {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() =>
+    localStorage.getItem("tasks")
+      ? JSON.parse(localStorage.getItem("tasks"))
+      : []
+  );
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

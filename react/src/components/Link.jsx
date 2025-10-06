@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Link({ toggleLink }) {
-  const [links, setLinks] = useState([]);
+  const [links, setLinks] = useState(() =>
+    localStorage.getItem("links")
+      ? JSON.parse(localStorage.getItem("links"))
+      : []
+  );
   const [titleInput, setTitleInput] = useState("");
   const [urlInput, setUrlInput] = useState("");
+
+  useEffect(
+    () => localStorage.setItem("links", JSON.stringify(links)),
+    [links]
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();

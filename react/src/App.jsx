@@ -33,7 +33,11 @@ export default function App() {
   const [isSettingOpen, setSettingOpen] = useState(false);
 
   // Sound states
-  const [soundFile, setSoundFile] = useState("./assets/sounds/nature.mp3");
+  const [soundFile, setSoundFile] = useState(() =>
+    localStorage.getItem("sound")
+      ? localStorage.getItem("sound")
+      : "./assets/sounds/nature.mp3"
+  );
   const soundRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -113,6 +117,10 @@ export default function App() {
   }, []);
 
   // Sound
+  useEffect(() => {
+    localStorage.setItem("sound", soundFile);
+  }, [soundFile]);
+
   useEffect(() => {
     if (soundRef.current) soundRef.current.pause();
     soundRef.current = new Audio(soundFile);
