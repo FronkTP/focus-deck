@@ -420,6 +420,7 @@ hr {
 .link__form {
   max-width: 1000px;
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   gap: 0.5rem;
   margin: 0 auto 0.75rem;
