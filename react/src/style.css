@@ -323,7 +323,7 @@ main {
 }
 
 .task__input {
-  width: 35rem;
+  width: 80%;
   padding: 0.5em 1em;
   background-color: var(--button-background);
   border-radius: 40px;
