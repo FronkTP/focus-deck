@@ -287,7 +287,7 @@ export default function Setting({
             Clear local storage
           </button>
           <p>
-            Some images are design by{" "}
+            Some images are designed by{" "}
             <a href="https://www.freepik.com/" className="attribution">
               Freepik
             </a>
