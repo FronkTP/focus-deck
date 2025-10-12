@@ -277,6 +277,12 @@ main {
   margin-bottom: 1rem;
 }
 
+.clear_storage-btn {
+  width: 10rem;
+  margin-bottom: var(--margin-modal-vertical);
+  padding: 0.5em;
+}
+
 /* Task */
 
 .task {

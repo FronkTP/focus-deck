@@ -277,6 +277,15 @@ export default function Setting({
               </li>
             </ul>
           </div>
+          <button
+            className="clear_storage-btn"
+            onClick={() => {
+              localStorage.clear();
+              alert("Local storage clear! Refresh the page to see changes.");
+            }}
+          >
+            Clear local storage
+          </button>
           <p>
             Some images are design by{" "}
             <a href="https://www.freepik.com/" className="attribution">
