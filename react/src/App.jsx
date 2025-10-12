@@ -273,7 +273,7 @@ export default function App() {
           <div>
             <p>
               &copy; {new Date().getFullYear()} Fronk. All Rights Reserved (
-              <a href="https://forms.gle/cWaVMw7Y2MfPCc1Z7">
+              <a href="https://forms.gle/cWaVMw7Y2MfPCc1Z7" target="_blank">
                 Send feedback to this site
               </a>
               )

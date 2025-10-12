@@ -295,6 +295,7 @@ export default function Setting({
           <p>
             <a
               href="https://forms.gle/cWaVMw7Y2MfPCc1Z7"
+              target="_blank"
               className="attribution"
             >
               Send feedback to this site
