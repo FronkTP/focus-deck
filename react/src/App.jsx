@@ -14,11 +14,51 @@ export { settingContext };
 
 export default function App() {
   // Settings
-  const [showTask, setShowTask] = useState(true);
-  const [showSound, setShowSound] = useState(true);
-  const [showLink, setShowLink] = useState(true);
-  const [showTimer, setShowTimer] = useState(true);
-  const [showQuote, setShowQuote] = useState(true);
+  const [showTask, setShowTask] = useState(() => {
+    const saved = localStorage.getItem("showTask");
+    return saved ? JSON.parse(saved) : true;
+  });
+
+  const [showSound, setShowSound] = useState(() => {
+    const saved = localStorage.getItem("showSound");
+    return saved ? JSON.parse(saved) : true;
+  });
+
+  const [showLink, setShowLink] = useState(() => {
+    const saved = localStorage.getItem("showLink");
+    return saved ? JSON.parse(saved) : true;
+  });
+
+  const [showTimer, setShowTimer] = useState(() => {
+    const saved = localStorage.getItem("showTimer");
+    return saved ? JSON.parse(saved) : true;
+  });
+
+  const [showQuote, setShowQuote] = useState(() => {
+    const saved = localStorage.getItem("showQuote");
+    return saved ? JSON.parse(saved) : true;
+  });
+
+  // Save to localStorage whenever any state changes
+  useEffect(() => {
+    localStorage.setItem("showTask", JSON.stringify(showTask));
+  }, [showTask]);
+
+  useEffect(() => {
+    localStorage.setItem("showSound", JSON.stringify(showSound));
+  }, [showSound]);
+
+  useEffect(() => {
+    localStorage.setItem("showLink", JSON.stringify(showLink));
+  }, [showLink]);
+
+  useEffect(() => {
+    localStorage.setItem("showTimer", JSON.stringify(showTimer));
+  }, [showTimer]);
+
+  useEffect(() => {
+    localStorage.setItem("showQuote", JSON.stringify(showQuote));
+  }, [showQuote]);
 
   // Ui
   const [mode, setMode] = useState("dark");
