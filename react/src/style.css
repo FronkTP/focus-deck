@@ -225,6 +225,10 @@ main {
   background: var(--background-color);
 }
 
+.modal__body > p {
+  margin-top: calc(var(--margin-modal-vertical) / 2);
+}
+
 .attribution {
   color: var(--accent-color);
 }
@@ -279,7 +283,6 @@ main {
 
 .clear_storage-btn {
   width: 10rem;
-  margin-bottom: var(--margin-modal-vertical);
   padding: 0.5em;
 }
 
@@ -603,6 +606,10 @@ footer {
   margin-top: 1.5em;
   text-align: center;
   color: var(--primary-color);
+}
+
+footer a {
+  color: var(--accent-color);
 }
 
 @media (min-width: 420px) {

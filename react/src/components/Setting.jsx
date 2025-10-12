@@ -292,6 +292,14 @@ export default function Setting({
               Freepik
             </a>
           </p>
+          <p>
+            <a
+              href="https://forms.gle/cWaVMw7Y2MfPCc1Z7"
+              className="attribution"
+            >
+              Send feedback to this site
+            </a>
+          </p>
         </div>
       </div>
     </div>

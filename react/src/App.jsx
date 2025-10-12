@@ -271,7 +271,13 @@ export default function App() {
         </main>
         <footer>
           <div>
-            <p>&copy; {new Date().getFullYear()} Fronk. All Rights Reserved</p>
+            <p>
+              &copy; {new Date().getFullYear()} Fronk. All Rights Reserved (
+              <a href="https://forms.gle/cWaVMw7Y2MfPCc1Z7">
+                Send feedback to this site
+              </a>
+              )
+            </p>
           </div>
         </footer>
       </div>
