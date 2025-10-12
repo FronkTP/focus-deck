@@ -204,6 +204,7 @@ export default function App() {
         <Header
           onTaskClick={toggleTask}
           onSoundClick={toggleSound}
+          soundFile={soundFile}
           setSoundFile={setSoundFile}
           onLinkClick={toggleLink}
           onSettingClick={toggleSetting}

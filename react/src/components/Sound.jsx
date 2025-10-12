@@ -1,11 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function Sound({ isPlaying, onSoundClick, setSoundFile }) {
+export default function Sound({
+  isPlaying,
+  onSoundClick,
+  soundFile,
+  setSoundFile,
+}) {
   const [showMenu, setShowMenu] = useState(false);
 
   const onSoundDropdownClick = () => {
     setShowMenu((prev) => !prev);
   };
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (
+        !e.target.closest(".sound__menu") &&
+        !e.target.closest("#nav-sound")
+      ) {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, [showMenu]);
 
   return (
     <li className="nav__item" id="nav-sound">
@@ -27,12 +45,29 @@ export default function Sound({ isPlaying, onSoundClick, setSoundFile }) {
         ></i>
       </div>
       {showMenu && (
-        <ul className="sound-menu">
-          <li onClick={() => setSoundFile("./assets/sounds/nature.mp3")}>
+        <ul className="sound__menu">
+          <li
+            onClick={() => setSoundFile("./assets/sounds/nature.mp3")}
+            className={
+              soundFile == "./assets/sounds/nature.mp3" ? "active" : ""
+            }
+          >
             Nature
           </li>
-          <li onClick={() => setSoundFile("./assets/sounds/lofi.mp3")}>Lofi</li>
-          <li onClick={() => setSoundFile("./assets/sounds/keyboard.mp3")}>
+          <hr></hr>
+          <li
+            onClick={() => setSoundFile("./assets/sounds/lofi.mp3")}
+            className={soundFile == "./assets/sounds/lofi.mp3" ? "active" : ""}
+          >
+            Lofi
+          </li>
+          <hr></hr>
+          <li
+            onClick={() => setSoundFile("./assets/sounds/keyboard.mp3")}
+            className={
+              soundFile == "./assets/sounds/keyboard.mp3" ? "active" : ""
+            }
+          >
             Keyboard
           </li>
         </ul>

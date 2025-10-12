@@ -5,6 +5,7 @@ import Sound from "./Sound";
 export default function Header({
   onTaskClick,
   onSoundClick,
+  soundFile,
   setSoundFile,
   onLinkClick,
   onSettingClick,
@@ -33,6 +34,7 @@ export default function Header({
             <Sound
               isPlaying={isPlaying}
               onSoundClick={onSoundClick}
+              soundFile={soundFile}
               setSoundFile={setSoundFile}
             />
           )}
