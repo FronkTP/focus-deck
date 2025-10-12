@@ -26,8 +26,6 @@ export default function Link({ toggleLink }) {
     setLinks(links.filter((_, i) => i !== index));
   };
 
-  const renderLinks = () => {};
-
   return (
     <div className="overlay" onClick={toggleLink}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
